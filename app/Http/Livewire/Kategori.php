@@ -85,7 +85,7 @@ class Kategori extends Component
 
     public function destroy(ModelsKategori $kategori){
 
-        $kategori->delete();
+        $kategori->rak()->delete();
 
         session()->flash('sukses', 'Data berhasil dihapus');
 

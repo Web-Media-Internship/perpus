@@ -11,7 +11,7 @@ class Rak extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $create,$edit;
+    public $create,$edit,$delete;
     public $rak,$baris,$kategori,$kategori_id,$rak_id;
 
     public function render()
@@ -88,12 +88,23 @@ class Rak extends Component
     }
 
     public function delete(ModelsRak $rak){
-        
+        $this->delete = true;
+        $this->rak_id = $rak->id;
+
+    }
+
+    public function destroy(ModelsRak $rak){
+        $rak->delete();
+
+        session()->flash('sukses', 'Data berhasil diubah ');
+
+        $this->format();
     }
 
     public function format(){
         unset($this->create);
         unset($this->edit);
+        unset($this->delete);
         unset($this->rak);
         unset($this->rak_id);
         unset($this->baris);
