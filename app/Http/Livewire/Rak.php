@@ -17,9 +17,18 @@ class Rak extends Component
     public function render()
     {
         return view('livewire.rak',[
-            'raks' => ModelsRak::latest()->paginate(3)
+            'raks' => ModelsRak::latest()->paginate(5)
         ]);
     }
+
+    // protected $messages = [
+    //     'rak.required' => 'Rak harus diisi.',
+    //     'baris.required' => 'Baris harus diisi.',
+    // ];
+
+    protected $validationAttributes = [
+        'kategori_id' => 'kategori'
+    ];
 
     public function create ()
     {
