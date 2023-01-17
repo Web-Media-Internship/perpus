@@ -18,7 +18,7 @@ class Buku extends Component
     use WithFileUploads;
     protected $paginationTheme = 'bootstrap';
 
-    public $create,$edit;
+    public $create,$edit,$delete;
     public $kategori,$rak,$penerbit;
     public $kategori_id,$rak_id,$penerbit_id;
     public $judul,$stok,$penulis,$sampul,$buku_id;
@@ -133,10 +133,30 @@ class Buku extends Component
         ]);
     }
 
+    public function delete(ModelsBuku $buku)
+    {
+        $this->format();
+        $this->delete = true;
+        $this->buku_id = $buku->id;
+
+    }
+
+    public function destroy(ModelsBuku $buku)
+    {
+        Storage::disk('public')->delete($buku->sampul);
+
+        $buku->delete();
+
+        session()->flash('sukses', 'Data berhasil dihapus');
+
+        $this->format();
+    }
+
     public function format()
     {
         unset($this->create);
         unset($this->judul);
+        unset($this->delete);
         unset($this->edit);
         unset($this->buku_id);
         unset($this->sampul);
