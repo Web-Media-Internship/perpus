@@ -6,6 +6,7 @@
     @include('petugas.buku.create')
     @include('petugas.buku.edit')
     @include('petugas.buku.delete')
+    @include('petugas.buku.show')
 
     <div class="card">
         <div class="card-header">
@@ -25,7 +26,7 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body table-responsive p-0">
-        <table class="table table-hover text-nowrap">
+        <table class="table table-hover text-nowrap">wq
             <thead>
             <tr>
                 <th width="10%">No</th>
@@ -46,6 +47,7 @@
                     <td>{{$item->kategori->nama}}</td>
                     <td>
                          <div class="btn-group">
+                            <span wire:click="show({{$item->id}})" class="btn btn-sm btn-success mr-2">Lihat</span>
                             <span wire:click="edit({{$item->id}})" class="btn btn-sm btn-primary mr-2">Edit</span>
                             <span wire:click="delete({{$item ->id}})" class="btn btn-sm btn-danger">Hapus</span>
                         </div>
