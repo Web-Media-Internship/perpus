@@ -50,9 +50,11 @@
             </tbody>
           </table>
         </div>
+        @if ($kategori->count() >5)
         <div class="card-footer clearfix">
             {{$kategori->links()}}
         </div>
+        @endif
         <!-- /.card-body -->
       </div>
       <!-- /.card -->

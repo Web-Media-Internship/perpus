@@ -20,10 +20,9 @@
                 </select>
 
                 <div class="input-group-append">
-                    <button wire:click="formatSearch" type="submit" class="btn btn-default">
-                    <i class="fas fa-times"></i>
+                    <button type="submit" class="btn btn-default">
+                    <i class="fas fa-search"></i>
                     </button>
-                </div>
                 </div>
             </div>
             </div>
@@ -57,9 +56,11 @@
         <!-- /.card-body -->
       @endif
       <!-- /.card -->
+      @if ($penerbit->count() >5)
      <div class="card-footer clearfix">
         {{$penerbit->links()}}
     </div>
+    @endif
     </div>
 
 

@@ -61,9 +61,11 @@
         <!-- /.card-body -->
       @endif
       <!-- /.card -->
+      @if ($raks->count() >5)
      <div class="card-footer clearfix">
         {{$raks->links()}}
     </div>
+    @endif
     </div>
 
 
