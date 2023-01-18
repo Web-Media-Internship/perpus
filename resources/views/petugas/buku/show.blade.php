@@ -38,16 +38,16 @@
                                     <td>:</td>
                                     <td>{{$penerbit}}</td>
                                 </tr>
-                                {{-- <tr>
+                                <tr>
                                     <th>Rak</th>
                                     <td>:</td>
-                                    <td>{{$rak}}</td>
+                                    <td>{{$rak == 0 ? 'none' : $rak}}</td>
                                 </tr>
                                 <tr>
                                     <th>baris</th>
                                     <td>:</td>
-                                    <td>{{$baris}}</td>
-                                </tr> --}}
+                                    <td>{{$baris == 0 ? 'none' : $baris}}</td>
+                                </tr>
                                 <tr>
                                     <th>Stok</th>
                                     <td>:</td>

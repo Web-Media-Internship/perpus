@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Rak as ModelsRak;
+use App\Models\Buku;
 use Livewire\WithPagination;
 Use App\Models\Kategori;
 
@@ -103,6 +104,14 @@ class Rak extends Component
     }
 
     public function destroy(ModelsRak $rak){
+
+        $buku = Buku::where('rak_id',$rak->id)->get();
+
+        foreach ($buku as $key => $value) {
+            $value->update([
+                'rak_id' => 1
+            ]);
+        }
         $rak->delete();
 
         session()->flash('sukses', 'Data berhasil diubah ');

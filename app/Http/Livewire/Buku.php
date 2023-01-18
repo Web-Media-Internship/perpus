@@ -163,8 +163,8 @@ class Buku extends Component
         $this->stok = $buku->stok;
         $this->kategori = $buku->kategori->nama;
         $this->penerbit = $buku->penerbit->nama;
-        // $this->rak = $buku->rak->rak;
-        // $this->baris = $buku->rak->baris;
+        $this->rak = $buku->rak->rak;
+        $this->baris = $buku->rak->baris;
     }
 
     public function format()
