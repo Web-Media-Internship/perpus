@@ -26,7 +26,7 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body table-responsive p-0">
-        <table class="table table-hover text-nowrap">wq
+        <table class="table table-hover text-nowrap">
             <thead>
             <tr>
                 <th width="10%">No</th>

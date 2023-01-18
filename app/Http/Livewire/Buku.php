@@ -51,7 +51,7 @@ class Buku extends Component
         $this->rak_id = $buku->rak_id;
         $this->penerbit_id = $buku->penerbit_id;
         $this->kategori = Kategori::all();
-        $this->rak = Rak::all();
+        $this->rak = Rak::where('kategori_id',$buku->kategori_id)->get();
         $this->penerbit = Penerbit::all();
     }
 
@@ -102,7 +102,6 @@ class Buku extends Component
 
         $this->create = true;
         $this->kategori = Kategori::all();
-        $this->rak = Rak::all();
         $this->penerbit = Penerbit::all();
     }
 
@@ -167,6 +166,10 @@ class Buku extends Component
         $this->baris = $buku->rak->baris;
     }
 
+    public function pilihKategori()
+    {
+        $this->rak = Rak::where('kategori_id',$this->kategori_id)->get();
+    }
     public function format()
     {
         unset($this->create);
