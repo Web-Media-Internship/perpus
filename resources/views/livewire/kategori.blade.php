@@ -10,7 +10,8 @@
       <div class="card">
         <div class="card-header">
             <span wire:click="create" class="btn btn-sm btn-primary">Tambah</span>
-          <div class="card-tools">
+          @if ($kategori->isNotEmpty())
+            <div class="card-tools">
             <div class="input-group input-group-sm" style="width: 150px;">
               <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
 
@@ -49,14 +50,25 @@
             @endforeach
             </tbody>
           </table>
+          @endif
         </div>
-        @if ($kategori->count() >5)
-        <div class="card-footer clearfix">
-            {{$kategori->links()}}
-        </div>
-        @endif
         <!-- /.card-body -->
       </div>
+
+      <div class="row justify-content-center">
+        {{$kategori->links()}}
+      </div>
+
+
       <!-- /.card -->
+      @if ($kategori->isEmpty())
+        <div class="card">
+            <div class="card-body">
+                <div class="alert alert-warning">
+                    Anda tidak memiliki data
+                </div>
+            </div>
+        </div>
+      @endif
     </div>
   </div>

@@ -11,6 +11,7 @@
         <div class="card-header">
         <span wire:click="create" class="btn btn-sm btn-primary">Tambah</span>
 
+            @if ($penerbit->isNotEmpty())
             <div class="card-tools">
                 <div class="input-group input-group-sm" style="width: 150px;">
                 <select wire:model="search" class="form-control float-right" id="exampleFormControlSelect1">
@@ -52,16 +53,18 @@
                 @endforeach
                 </tbody>
             </table>
+            @endif
+
         </div>
         <!-- /.card-body -->
       @endif
       <!-- /.card -->
-      @if ($penerbit->count() >5)
-     <div class="card-footer clearfix">
-        {{$penerbit->links()}}
     </div>
-    @endif
+    <div class="row justify-content-center">
+      {{$penerbit->links()}}
     </div>
+
+  </div>
 
 
     @if ($penerbit->isEmpty())

@@ -94,19 +94,19 @@ class Kategori extends Component
             ]);
         }
 
-        $buku = Buku::where('kategori_id', $kategori->id)->get();
-        foreach ($buku as $key => $value) {
-            $value->update([
-                'kategori_id' => 1
-            ]);
-        }
-
         // $buku = Buku::where('kategori_id', $kategori->id)->get();
         // foreach ($buku as $key => $value) {
         //     $value->update([
         //         'kategori_id' => 1
         //     ]);
         // }
+
+        $buku = Buku::where('kategori_id', $kategori->id)->get();
+        foreach ($buku as $key => $value) {
+            $value->update([
+                'kategori_id' => 1
+            ]);
+        }
 
         $kategori->delete();
 
