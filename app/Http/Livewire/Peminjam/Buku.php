@@ -13,9 +13,11 @@ class Buku extends Component
 
     protected $listeners = ['pilihKategori','semuaKategori'];
 
-    public $kategori_id, $pilih_kategori;
+    public $kategori_id, $pilih_kategori,$detail_buku,$buku_id;
+
     public function pilihKategori($id)
     {
+        $this->format();
         $this->kategori_id = $id;
         $this->pilih_kategori = true;
         $this->updatingSearch();
@@ -23,14 +25,24 @@ class Buku extends Component
 
     public function semuaKategori()
     {
+        $this->format();
         $this->pilih_kategori = false;
         $this->updatingSearch();
     }
 
+    public function detailBuku($id)
+    {
+        $this->format();
+        $this->detail_buku = true;
+        $this->buku_id = $id;
+    }
+    
     public function updatingSearch()
     {
         $this->resetPage();
     }
+
+
 
     public function render()
     {
@@ -38,10 +50,21 @@ class Buku extends Component
         if ($this->pilih_kategori) {
             $buku = ModelsBuku::latest()->where('kategori_id',$this->kategori_id)->paginate(12);
             $title = ModelsKategori::find($this->kategori_id)->nama;
-        }else{
+        }elseif($this->detail_buku){
+            $buku = ModelsBuku::find($this->buku_id);
+            $title = 'Detail Buku';
+        } else {
             $buku = ModelsBuku::latest()->paginate(12);
             $title = 'Semua Buku';
         }
         return view('livewire.peminjam.buku',compact('buku','title'));
+    }
+
+    public function format()
+    {
+        $this->detail_buku = false;
+        $this->pilih_kategori = false;
+        unset($this->buku_id);
+        unset($this->kategori_id);
     }
 }
