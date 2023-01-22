@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Petugas;
 Use App\Models\Kategori as ModelsKategori;
 use App\Models\Rak;
 use App\Models\Buku;
@@ -42,7 +42,7 @@ class Kategori extends Component
     public function render()
     {
 
-        return view('livewire.kategori',[
+        return view('livewire.petugas.kategori',[
             'kategori' => ModelsKategori::latest()->paginate(5) //mengubah row table
 
         ]);
