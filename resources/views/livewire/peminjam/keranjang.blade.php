@@ -6,7 +6,7 @@
     </div>
 
     @include('adminlte.flash')
-     
+
     <div class="row" style="margin-top: 10px">
         <div class="col-md-12 mb-4">
             <label for="tanggal_pinjam">Tanggal Pinjam</label>
@@ -14,11 +14,15 @@
         </div>
     </div>
 
-
-
+    <div class="row">
+        <div class="col-md-12 mb-3" >
+            <button wire:click="hapusSemua" class="btn btn-sm btn-danger">Hapus Semua</button>
+            <strong style="float-right">Kode Pinjam : {{$keranjang->kode_pinjam}}</strong>
+        </div>
+    </div>
     <div class="row" >
         <table class="table table-hover text-nowrap">
-            <strong>Kode Pinjam : {{$keranjang->kode_pinjam}}</strong>
+
             <thead>
               <tr>
                 <th>No</th>

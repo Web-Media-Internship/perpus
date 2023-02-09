@@ -11,7 +11,7 @@ class Keranjang extends Component
     public function render()
     {
         $keranjang = Peminjaman::latest()->where('peminjam_id', auth()->user()->id)->where('status', '!=', 3)->first();
-        if($keranjang){
+        if(!$keranjang){
             redirect('/');
         }
         return view('livewire.peminjam.keranjang',[
@@ -29,7 +29,16 @@ class Keranjang extends Component
             $detail_peminjaman->delete();
             session()->flash('sukses', 'Data berhasil di hapus');
         }
+    }
 
-
+    public function hapusSemua(){
+        $keranjang = Peminjaman::latest()->where('peminjam_id', auth()->user()->id)->where('status', '!=', 3)->first();
+        foreach($keranjang->detail_peminjaman as $detail_peminjaman){
+            $detail_peminjaman->delete();
+        }
+        $keranjang->delete();
+        session()->flash('sukses', 'Data berhasil di hapus');
+        redirect('/');
     }
 }
+
