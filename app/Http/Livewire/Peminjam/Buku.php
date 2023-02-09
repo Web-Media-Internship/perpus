@@ -77,16 +77,18 @@ class Buku extends Component
                             'peminjaman_id' => $peminjaman_baru->id,
                             'buku_id' => $buku->id
                         ]);
-
+                        // $this->emit('tambahKeranjang');
                         session()->flash('sukses', 'Buku berhasil ditambahkan ke dalam keranjang');
                     } else {
                         if ($peminjaman_lama[0]->buku_id == $buku->id) {
                             session()->flash('gagal', 'Buku tidak boleh sama');
                         } else {
                             DetailPeminjaman::create([
-                                'peminjaman_id' => $peminjaman_lama[0]->id,
+                                'peminjaman_id' => $peminjaman_lama[0]->peminjaman_id,
                                 'buku_id' => $buku->id
                             ]);
+
+                            // $this->emit('tambahKeranjang');
                             session()->flash('sukses', 'Buku berhasil ditambahkan ke dalam keranjang');
                         }
 
