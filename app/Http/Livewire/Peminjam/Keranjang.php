@@ -4,10 +4,17 @@ namespace App\Http\Livewire\Peminjam;
 
 use Livewire\Component;
 use App\Models\Peminjaman;
+use Carbon\Carbon;
 use App\Models\DetailPeminjaman;
 
 class Keranjang extends Component
 {
+    public $tanggal_pinjam;
+
+    protected $rules = [
+        'tanggal_pinjam' => 'required|date|after_or_equal:today',
+    ];
+
     public function render()
     {
         $keranjang = Peminjaman::latest()->where('peminjam_id', auth()->user()->id)->where('status', '!=', 3)->first();
@@ -39,6 +46,18 @@ class Keranjang extends Component
         $keranjang->delete();
         session()->flash('sukses', 'Data berhasil di hapus');
         redirect('/');
+    }
+
+    public function pinjam(Peminjaman $keranjang){
+        $this->validate();
+
+        $keranjang->update([
+            'status' => 1,
+            'tanggal_pinjam' => $this->tanggal_pinjam,
+            'tanggal_kembali' => Carbon::create($this->tanggal_pinjam)->addDays(10)
+        ]);
+        session()->flash('sukses', 'Buku berhasil di pinjam');
+
     }
 }
 
