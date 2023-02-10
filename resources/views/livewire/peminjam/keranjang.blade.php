@@ -18,11 +18,11 @@
     <div class="row">
         <div class="col-md-12 mb-3" >
             @if ($keranjang->tanggal_pinjam)
-            <strong style="float-right">Tanggal Pinjam: {{$keranjang->tanggal_pinjam}}</strong>
+            <strong>Tanggal Pinjam: {{$keranjang->tanggal_pinjam}}</strong>
             @else
             <button wire:click="pinjam({{$keranjang->id}})" class="btn btn-sm btn-success" >Pinjam</button>
             @endif
-            {{-- <strong style="float-right">Kode Pinjam : {{$keranjang->kode_pinjam}}</strong> --}}
+            {{-- <strong class="float-right">Kode Pinjam : {{$keranjang->kode_pinjam}}</strong> --}}
         </div>
     </div>
     <div class="row" >
@@ -37,7 +37,7 @@
                 <th>Baris</th>
                 <th>
                     @if(!$keranjang->tanggal_pinjam)
-                    
+
                     @endif
                 </th>
               </tr>
