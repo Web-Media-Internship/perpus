@@ -6,6 +6,7 @@ use App\Http\Controllers\Petugas\KategoriController;
 use App\Http\Controllers\Petugas\PenerbitController;
 use App\Http\Controllers\Petugas\RakController;
 use App\Http\Controllers\Petugas\BukuController;
+use App\Http\Controllers\Petugas\TransaksiController;
 use App\Http\Controllers\Peminjam\KeranjangController;
 use App\Http\Controllers\Peminjam\BukuController as PeminjamBukuController;
 /*
@@ -37,6 +38,7 @@ Route::middleware(['auth','role:admin|petugas'])->group(function () {
     Route::get('/rak',RakController::class);
     Route::get('/penerbit',PenerbitController::class);
     Route::get('/buku',BukuController::class);
+    Route::get('/transaksi',TransaksiController::class);
 });
 
 Route::middleware(['auth','role:peminjam'])->group(function(){

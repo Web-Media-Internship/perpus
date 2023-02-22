@@ -6,18 +6,17 @@
         </div>
         @if (!$detail_buku)
             <div class="col-md-4">
-              <label class="sr-only" for="inlineFormInputGroup">Username</label>
-                <div class="input-group mb-2">
+                  <div class="input-group mb-2">
                   <input wire:model="search" type="text" class="form-control" id="inlineFormInputGroup" placeholder="Cari Buku">
                   <div class="input-group-prepend">
-                    <button class="input-group-text">
+                    {{-- <button class="input-group-text">
                       <i class="fas fa-search"></i>
-                    </button>
+                    </button> --}}
                   </div>
                 </div>
             </div>
         @endif
-        
+
     </div>
 
    @if ($detail_buku)
