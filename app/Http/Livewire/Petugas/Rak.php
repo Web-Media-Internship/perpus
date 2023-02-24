@@ -13,13 +13,23 @@ class Rak extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
     public $create,$edit,$delete;
-    public $rak,$baris,$kategori,$kategori_id,$rak_id;
+    public $rak,$baris,$kategori,$kategori_id,$rak_id,$search;
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
 
     public function render()
     {
-        return view('livewire.petugas.rak',[
-            'raks' => ModelsRak::latest()->paginate(5)
-        ]);
+        if ($this->search) {
+            $raks = ModelsRak::latest()->where('rak',$this->search)->paginate(5);
+        } else {
+            $raks = ModelsRak::latest()->paginate(5);
+        }
+        $count = ModelsRak::select('rak')->distinct()->get();
+
+        return view('livewire.petugas.rak',compact('raks','count'));
     }
 
     // protected $messages = [
@@ -128,5 +138,10 @@ class Rak extends Component
         unset($this->baris);
         unset($this->kategori_id);
         unset($this->kategori);
+    }
+
+    public function formatSearch()
+    {
+        $this->search = false;
     }
 }
