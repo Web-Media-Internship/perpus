@@ -38,4 +38,8 @@ class Buku extends Model
     {
         $this->attributes['judul'] = ucfirst($value);
     }
+    public function setPenulisAttribute($value)
+    {
+        $this->attributes['penulis'] = ucfirst($value);
+    }
 }
