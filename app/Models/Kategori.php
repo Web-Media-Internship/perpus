@@ -23,6 +23,9 @@ class Kategori extends Model
             return $this->hasMany(Buku::class);
     }
 
-
-
+    //mutator
+    public function setNamaAttribute($value)
+    {
+        $this->attributes['nama'] = ucfirst($value);
+    }
 }
