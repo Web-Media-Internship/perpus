@@ -11,7 +11,7 @@ use Illuminate\Support\Str;
 
 class Kategori extends Component
 {
-    public $create,$edit,$nama,$kategori_id,$delete;
+    public $create,$edit,$nama,$kategori_id,$delete,$search;
 
     protected $rules = [
         'nama' => 'required|min:5',
@@ -39,11 +39,21 @@ class Kategori extends Component
         $this->create = true;
     }
 
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+    
     public function render()
     {
+        if ($this->search) {
+            $kategori = ModelsKategori::latest()->where('nama','like','%'. $this->search .'%')->paginate(5);
+        } else {
+            $kategori = ModelsKategori::latest()->paginate(5);
+        }
 
         return view('livewire.petugas.kategori',[
-            'kategori' => ModelsKategori::latest()->paginate(5) //mengubah row table
+            'kategori' => $kategori //mengubah row table
 
         ]);
     }
